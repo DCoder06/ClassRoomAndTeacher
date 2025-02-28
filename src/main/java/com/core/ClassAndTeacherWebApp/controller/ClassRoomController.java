@@ -6,6 +6,9 @@ import com.core.ClassAndTeacherWebApp.model.ClassRoom;
 import com.core.ClassAndTeacherWebApp.services.ClassRoomService;
 import jakarta.persistence.GeneratedValue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,28 +21,28 @@ public class ClassRoomController {
     private ClassRoomService classRoomService;
 
     @GetMapping("/")
-    public List<ClassRoom> getAllClassRooms() {
+    public ResponseEntity<List<ClassRoom>> getAllClassRooms() {
         return classRoomService.getAllClassRooms();
     }
 
     @GetMapping("/{id}")
-    public ClassRoom getClassRoomById(@PathVariable int id) {
+    public ResponseEntity<?> getClassRoomById(@PathVariable int id) {
         return classRoomService.getClassRoomById(id);
     }
 
     @PostMapping("/")
-    public void addNewClassRoom(@RequestBody ClassRoom classRoom) {
-        classRoomService.createNewClassRoom(classRoom);
+    public ResponseEntity<?> addNewClassRoom(@RequestBody ClassRoom classRoom) {
+        return classRoomService.createNewClassRoom(classRoom);
     }
 
     @PutMapping("/")
-    public void addNewSubjectToClass(@RequestBody ClassRoom classRoom) {
-        classRoomService.addNewSubjectToClassRoom(classRoom);
+    public ResponseEntity<?> addNewSubjectToClass(@RequestBody ClassRoom classRoom) {
+        return classRoomService.addNewSubjectToClassRoom(classRoom);
     }
 
     @PutMapping("/{id}")
-    public void deleteClassRoomById(@PathVariable int id) {
-        classRoomService.deleteClassRoomById(id);
+    public ResponseEntity<?> deleteClassRoomById(@PathVariable int id) {
+        return classRoomService.deleteClassRoomById(id);
     }
 
 }
