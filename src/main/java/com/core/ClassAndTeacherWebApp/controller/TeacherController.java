@@ -41,11 +41,5 @@ public class TeacherController {
         return teacherService.addNewClassForTeacher(id,class_id);
     }
 
-    @GetMapping("/a")
-    public ResponseEntity<?> getAllTeachers() {
-         return teacherService.getAllTeachers();
-     }
-
-
 
 }
